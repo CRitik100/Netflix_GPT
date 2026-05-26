@@ -1,0 +1,36 @@
+{
+  "name": "netflix_gpt",
+  "version": "1.0.0",
+  "description": "Netflix powered with A.I",
+  "keywords": [
+    "neflix-a.i"
+  ],
+  "homepage": "https://github.com/CRitik100/Netflix_GPT#readme",
+  "bugs": {
+    "url": "https://github.com/CRitik100/Netflix_GPT/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CRitik100/Netflix_GPT.git"
+  },
+  "license": "ISC",
+  "author": "Ritik Chaurasiya",
+  "type": "module",
+  "scripts": {
+    "start": "parcel src/index.html",
+    "install": "parcel build src/index.html",
+    "test": "jest"
+  },
+  "devDependencies": {
+    "parcel": "^2.16.4"
+  },
+  "dependencies": {
+    "@tailwindcss/postcss": "^4.3.0",
+    "react": "^19.2.6",
+    "react-dom": "^19.2.6",
+    "tailwindcss": "^4.3.0"
+  },
+  "browserslist": [
+    "last 2 versions"
+  ]
+}
