@@ -17,17 +17,20 @@
   "author": "Ritik Chaurasiya",
   "type": "module",
   "scripts": {
-    "start": "parcel src/index.html --no-cache",
-    "install": "parcel build src/index.html",
+    "start": "parcel src/index.html ",
+    "build": "parcel build src/index.html",
     "test": "jest"
   },
   "devDependencies": {
+    "@reduxjs/toolkit": "^2.12.0",
     "parcel": "^2.16.4"
   },
   "dependencies": {
     "@tailwindcss/postcss": "^4.3.0",
+    "firebase": "^12.13.0",
     "react": "^19.2.6",
     "react-dom": "^19.2.6",
+    "react-redux": "^9.3.0",
     "react-router-dom": "^6.30.3",
     "tailwindcss": "^4.3.0"
   },

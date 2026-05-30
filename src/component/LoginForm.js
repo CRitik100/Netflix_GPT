@@ -4,12 +4,23 @@ import {
   emailValidation,
   passwordValidation,
 } from "../utils/validation";
+import {
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  updateProfile,
+} from "firebase/auth";
+import { auth } from "../utils/firebase";
+import { useNavigate } from "react-router-dom";
+import { addUser } from "../utils/userSlice";
+import { useDispatch } from "react-redux";
 
 const LoginForm = () => {
   const [signInStatus, setSignInStatus] = useState(true);
   const [errorName, setErrorName] = useState(null);
   const [errorEmail, setErrorEmail] = useState(null);
   const [errorPassword, setErrorPassword] = useState(null);
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const name = useRef(null);
   const emailId = useRef(null);
@@ -24,6 +35,64 @@ const LoginForm = () => {
     passwordStatus != null
       ? setErrorPassword(passwordStatus)
       : setErrorPassword(null);
+
+    if (!signInStatus) {
+      // For Sign up.
+      if (nameStatus == null && emailStatus == null && passwordStatus == null) {
+        createUserWithEmailAndPassword(
+          auth,
+          emailId.current.value,
+          password.current.value,
+        )
+          .then((userCredential) => {
+            // Signed up
+            const user = userCredential.user;
+
+            updateProfile(user, {
+              displayName: name.current.value,
+            })
+              .then(() => {
+                // Profile updated!
+                console.log(user);
+                const { uid, email, displayName } = user;
+                dispatch(
+                  addUser({ uid: uid, email: email, displayName: displayName }),
+                );
+                navigate("/browse");
+              })
+              .catch((error) => {
+                console.log(error);
+              });
+          })
+          .catch((error) => {
+            const errorCode = error.code;
+            const errorMessage = error.message;
+            setErrorPassword(errorCode + ": " + errorMessage);
+            // ..
+          });
+      }
+    } else {
+      // For Sign in.
+      if (emailStatus == null && passwordStatus == null) {
+        signInWithEmailAndPassword(
+          auth,
+          emailId.current.value,
+          password.current.value,
+        )
+          .then((userCredential) => {
+            // Signed in
+            const user = userCredential.user;
+            console.log(user);
+            navigate("/browse");
+            // ...
+          })
+          .catch((error) => {
+            const errorCode = error.code;
+            const errorMessage = error.message;
+            setErrorPassword(errorCode + ": " + errorMessage);
+          });
+      }
+    }
   };
 
   return (
@@ -99,4 +168,3 @@ const LoginForm = () => {
   );
 };
 export default LoginForm;
-50;

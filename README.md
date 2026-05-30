@@ -17,6 +17,15 @@ This is Repository for Netflix.
      }
    - Import the "@import "tailwindcss" in .css file
 6. Install React router dom for fast navigation in react -> npm install react-router-dom
+7. Install Firebase SDK -> npm install firebase
+8. Install the Firebase CLI -> npm install -g firebase-tools
+9. Deploy the Firebase Hosting - >
+  - firebase login
+  - firebase init
+  - firebase deploy
+10. Installing Redux Toolkit/ React- Redux package for state management -> 
+    npm install @reduxjs/toolkit
+    npm install react-redux
 
 Note:
 
@@ -44,3 +53,12 @@ Note:
 - /       -> Login Body
 - /login  -> Login Form
 - /browse -> Browser Page
+
+
+# Redux :
+- Action answers:
+  "What happened?"
+- Reducer answers:
+  "How should state change?"
+
+That separation is the foundation of Redux architecture.
