@@ -5,6 +5,7 @@ import UserProfile from "./UserProfile";
 import SearchIcon from "../../icons/SearchIcon";
 import { useLocation, useNavigate } from "react-router-dom";
 import BookMark from "../../icons/BookMark";
+import ToolTip from "./TootTip";
 
 const LoggedInHeader = ({ AIWindow }) => {
   const [showProfile, setShowProfile] = useState(false);
@@ -25,19 +26,21 @@ const LoggedInHeader = ({ AIWindow }) => {
       >
         <div
           id="search"
-          className="text-white mt-2.5 cursor-pointer"
+          className="text-white mt-2.5 cursor-pointer relative"
           onClick={() => {
             AIWindow();
           }}
         >
           <SearchIcon />
+         <ToolTip text="A.I Search" />
         </div>
         <div
           id="favourite"
-          className="text-white mt-3 cursor-pointer"
+          className="text-white mt-3 cursor-pointer relative"
           onClick={() => navigate("/browse/favourite")}
         >
           <BookMark />
+          <ToolTip text="Favourite" />
         </div>
         <div
           id="user-profile"
